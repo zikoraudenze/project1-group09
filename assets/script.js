@@ -128,7 +128,7 @@ addTaskBtn.addEventListener("click", () => {
   }
 });
 
-// Optional: Persist tasks in localStorage
+
 window.addEventListener("load", () => {
   const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
   savedTasks.forEach((taskText) => {
