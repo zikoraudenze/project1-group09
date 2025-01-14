@@ -102,3 +102,51 @@ function hideTodayBtn() {
     todayBtn.style.display = "flex";
   }
 }
+
+const taskInput = document.getElementById("task-input");
+const addTaskBtn = document.getElementById("add-task-btn");
+const taskList = document.getElementById("task-list");
+
+// Add Task Functionality
+addTaskBtn.addEventListener("click", () => {
+  const taskText = taskInput.value.trim();
+  if (taskText) {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${taskText}
+      <button class="delete-task-btn">Delete</button>
+    `;
+    taskList.appendChild(li);
+
+    // Clear input field
+    taskInput.value = "";
+
+    // Add Delete Functionality
+    li.querySelector(".delete-task-btn").addEventListener("click", () => {
+      taskList.removeChild(li);
+    });
+  }
+});
+
+// Optional: Persist tasks in localStorage
+window.addEventListener("load", () => {
+  const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  savedTasks.forEach((taskText) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${taskText}
+      <button class="delete-task-btn">Delete</button>
+    `;
+    taskList.appendChild(li);
+    li.querySelector(".delete-task-btn").addEventListener("click", () => {
+      taskList.removeChild(li);
+    });
+  });
+});
+
+window.addEventListener("beforeunload", () => {
+  const tasks = Array.from(taskList.querySelectorAll("li")).map(
+    (li) => li.textContent.trim()
+  );
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+});

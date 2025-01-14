@@ -99,3 +99,76 @@
   .days .day.prev {
     color: #ccc;
   }
+
+  .task-manager {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .task-manager h3 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .task-manager .task-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .task-manager .task-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .task-manager .task-input button {
+    padding: 10px 15px;
+    border: none;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .task-manager .task-input button:hover {
+    background-color: #229799;
+  }
+  
+  .task-manager ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .task-manager ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .task-manager ul li button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .task-manager ul li button:hover {
+    background-color: darkred;
+  }
+  
+  
