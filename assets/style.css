@@ -1,7 +1,16 @@
 :root {
-    --primary-color: #48CFCB;
-    --text-color: #424242;
-    --bg-color: #f1f1fb;
+    /* --primary-color: #9AA6B2;
+    --text-color: #9AA6B2;
+    --bg-color: #F8FAFC; */
+    --primary-color: #092635;
+    --text-color: #1B4242;
+    --bg-color: #9EC8B9;
+  }
+  dark {
+    --primary-color: #1B4242;
+    --text-color: #9EC8B9;
+    --bg-color: #092635;
+    
   }
   * {
     margin: 0;
@@ -12,8 +21,10 @@
   body {
     background-color: #fff;
   }
+
+  /*  */
   .calendar {
-    position: relative;
+    flex: auto;
     left: 1300px;
     width: 100%;
     max-width: 600px;
@@ -170,5 +181,23 @@
   .task-manager ul li button:hover {
     background-color: darkred;
   }
-  
+ 
+  section{
+
+    display: flex;
+  }
+
+  aside{
+
+    flex: 1;
+    padding: 20px;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-tooltip {
+    --bs-tooltip-bg: var(--bd-violet-bg);
+    --bs-tooltip-color: var(--bs-white);
+  }
   
