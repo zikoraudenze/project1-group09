@@ -1,7 +1,3 @@
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-
 const daysContainer = document.querySelector(".days"),
   nextBtn = document.querySelector(".next-btn"),
   prevBtn = document.querySelector(".prev-btn"),
