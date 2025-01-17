@@ -181,7 +181,20 @@
   .task-manager ul li button:hover {
     background-color: darkred;
   }
- 
+  
+  .modal-header {
+    background-color: var(--primary-color);
+    color: #fff;
+  }
+  
+  .modal-footer .btn {
+    transition: all 0.3s;
+  }
+  
+  .modal-footer .btn:hover {
+    transform: scale(1.05);
+  }
+  
   section{
 
     display: flex;
@@ -200,22 +213,4 @@
     --bs-tooltip-bg: var(--bd-violet-bg);
     --bs-tooltip-color: var(--bs-white);
   }
-
-  #weather-background{
-
   
-  }
-
-  #reactWeatherImage{
-
-    /* backgroud fits the size of the parent element */
-    max-height: 150px;
-    background-color: darkgray;
-    opacity: 40;
-    /* fills the content */
-    object-fit: cover;
-    /* center the image */
-    object-position: center;
-    
-
-  }

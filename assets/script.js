@@ -107,46 +107,36 @@ const taskInput = document.getElementById("task-input");
 const addTaskBtn = document.getElementById("add-task-btn");
 const taskList = document.getElementById("task-list");
 
-// Add Task Functionality
-addTaskBtn.addEventListener("click", () => {
-  const taskText = taskInput.value.trim();
-  if (taskText) {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${taskText}
-      <button class="delete-task-btn">Delete</button>
-    `;
-    taskList.appendChild(li);
+document.addEventListener("DOMContentLoaded", () => {
+  const newTaskInput = document.getElementById("newTaskInput");
+  const saveTaskBtn = document.getElementById("saveTaskBtn");
+  const taskList = document.getElementById("task-list");
 
-    // Clear input field
-    taskInput.value = "";
+  // Add Task Functionality
+  saveTaskBtn.addEventListener("click", () => {
+    const taskText = newTaskInput.value.trim();
 
-    // Add Delete Functionality
-    li.querySelector(".delete-task-btn").addEventListener("click", () => {
-      taskList.removeChild(li);
-    });
-  }
-});
+    // Validate input
+    if (taskText) {
+      // Create a new list item
+      const li = document.createElement("li");
+      li.classList.add("task-item");
+      li.innerHTML = `
+        ${taskText}
+        <button class="btn btn-tomato delete-task-btn">Delete</button>
+      `;
+      taskList.appendChild(li);
 
+      // Attach delete functionality
+      li.querySelector(".delete-task-btn").addEventListener("click", () => {
+        taskList.removeChild(li);
+      });
 
-window.addEventListener("load", () => {
-  const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  savedTasks.forEach((taskText) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${taskText}
-      <button class="delete-task-btn">Delete</button>
-    `;
-    taskList.appendChild(li);
-    li.querySelector(".delete-task-btn").addEventListener("click", () => {
-      taskList.removeChild(li);
-    });
+      // Clear input field and close the modal
+      newTaskInput.value = "";
+      const addTaskModal = bootstrap.Modal.getInstance(document.getElementById("addTaskModal"));
+      addTaskModal.hide();
+    }
   });
 });
 
-window.addEventListener("beforeunload", () => {
-  const tasks = Array.from(taskList.querySelectorAll("li")).map(
-    (li) => li.textContent.trim()
-  );
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-});
