@@ -19,9 +19,9 @@ function generateRandomWeather(){
    const conditionsList = ['rain', 'sunny','cloudy'];
    const conditionsList2 = ['sunny','cloudy','snow'];
   //select the temperature element from the DOM
-  const temperatureEl = document.getElementById('localTemp');
+  const temperatureEl = document.getElementById('activity-info-temperature');
   //select the condition element from the DOM
-  const conditionEl = document.getElementById('localWeatherDiscription');
+  const conditionEl = document.getElementById('activity-info-weather-condition');
   let condition = '';
   let weatherVerb = '';
   
@@ -71,18 +71,22 @@ function generateRandomWeather(){
 
 function changeWeatherImageBackground() {
   let currentCondition = generateRandomWeather().condition;
+  const weatherbackgroundEl = document.getElementById('weather-background');
   const changeWeatherImage = document.getElementById('reactWeatherImage');
   //if the condition is 'rain', set the background image to the rain image
   if (currentCondition === 'rain') {
-    changeWeatherImage.src = "./assets/images/rainDropsOverlay.gif";
+    changeWeatherImage.src = "./assets/images/rainGifOverlay.gif";
   } 
   //if the condition is 'sunny', set the background image to the sunny image
   else if (currentCondition === 'sunny') {
     changeWeatherImage.src = "./assets/images/sunnyGifOverlay.gif";
+    changeWeatherImage.style.backgroundColor = 'SkyBlue';
   } 
   //if the condition is 'snow', set the background image to the snow image
   else if (currentCondition === 'snow') {
     changeWeatherImage.src = "assets/images/snowflakeGifOverlay.gif";
+    //change the background color to black
+   changeWeatherImage.style.backgroundColor = 'black';
   } 
   //if the condition is 'cloudy', set the background image to the cloudy image
   else if (currentCondition === 'cloudy') {
@@ -97,5 +101,4 @@ function generateWeatherInfo() {
   }
   
   //function that handles the weather button click event
-  weatherbutton.addEventListener('click',generateWeatherInfo);
   

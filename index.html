@@ -12,7 +12,7 @@
     <header class="header">
         <nav class="navbar nav-justified navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body" data-bs-theme="dark" >
             <div class="container-fluid">
-                    <img src="./Logo.png" alt="Logo" width="200" height="150" class="d-inline-block align-text-top">
+                    <img src="./assets/images/Logo.png" alt="Logo" width="200" height="150" class="d-inline-block align-text-top">
               <a class="navbar-brand" href="#">
                 ACTIVITY TRACKER
               </a>
@@ -40,28 +40,36 @@
 
   <!-- Activity InfoSection - Displays the selected Activity and its info: -->
    <!-- Name, Address, city, state, date(dd--mm--yyyy),tempature and weather condition -->
-   <section class="activityInfo">
-      <div class="container">
-          <div class="row">
-            <div class="col">
-                <h3>Activity Info</h3>
-                <p class="lead"></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Activity Name</h4>
-                    </div>
-                    <div class="card-body">
-                        <p>Address</p>
-                        <p>City</p>
-                        <p>State</p>
-                        <p>Scheduled Date and Time</p>
-                        <p>Discription</p>
-                    </div>
+    <section class="activityInfo">
+      <div class="container-fluid">
+          <div class="row align-items-center">
+              <div class="col-9">
+                  <h3>Activity Info</h3>
+                  <p class="lead">Select an activity to view more information</p>
+              </div>
+              <div class=" card container">
+                <div class="card-header">
+                  <h4 id="activity-info-name">Activity</h4>
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                  <div class="col-sm-6 col-md-5 col-lg-6">
+                    <p id="activity-info-address">Address:</p>
+                        <p id="activity-info-city">City:</p>
+                        <p id="activity-info-state">State:</p>
+                        <p id="activity-info-date">Date:</p>
+                        <p id="activity-info-description">Description:</p>
                   </div>
+                  <div class="card col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0" id="weather-background" >
+                  
+                      <img id="reactWeatherImage" src="" alt="Weather" class="rounded float-end card-img-top">
+                  
+                    <p id="activity-info-temperature">Current Temperature:</p>
+                    <p id="activity-info-weather-condition">Current Conditions:</p>
+                    
+                  </div>
+                </div>
               </div>
           </div>
       </div>
@@ -140,13 +148,7 @@
                     </div>
                         <div class="row">
                         <div class="col">
-                            <ul class="list-group">
-                                <li class="list-group-item d-flex justify-content-between align-items-center"><p>ACTIVITY NAME</p></li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center"><p>ACTIVITY NAME</p></li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center"><p>ACTIVITY NAME</p></li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center"><p>ACTIVITY NAME</p></li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center"><p>ACTIVITY NAME</p></li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center"><p>ACTIVITY NAME</p></li>
+                            <ul class="list-group" id="activity-list-selection">
                               </ul>
                         </div>
                     </div>
@@ -181,7 +183,7 @@
     <header class="header">
         <nav class="navbar nav-justified navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body" data-bs-theme="dark" >
             <div class="container-fluid">
-                <img src="./Logo.png" alt="Logo" width="200" height="150" class="d-inline-block align-text-top">
+                <img src="./assets/images/Logo.png" alt="Logo" width="200" height="150" class="d-inline-block align-text-top">
                 <br><br>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -192,7 +194,9 @@
 </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="./assets/script.js"></script>
+    <script src="./assets/activities.js"></script>
     <script src="./weather.js"></script>
+    
  
 </body>
 </html>
