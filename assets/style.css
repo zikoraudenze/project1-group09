@@ -181,7 +181,20 @@
   .task-manager ul li button:hover {
     background-color: darkred;
   }
- 
+  
+  .modal-header {
+    background-color: var(--primary-color);
+    color: #fff;
+  }
+  
+  .modal-footer .btn {
+    transition: all 0.3s;
+  }
+  
+  .modal-footer .btn:hover {
+    transform: scale(1.05);
+  }
+  
   section{
 
     display: flex;
@@ -200,6 +213,23 @@
     --bs-tooltip-bg: var(--bd-violet-bg);
     --bs-tooltip-color: var(--bs-white);
   }
+<<<<<<< HEAD
+  
+  /* Style for Delete Button */
+.btn-tomato {
+  background-color: tomato;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-tomato:hover {
+  background-color: darkred;
+}
+=======
 
   #weather-background{
 
@@ -219,3 +249,4 @@
     
 
   }
+>>>>>>> fb4b75e07e285999582594d9a740378392fe1064
