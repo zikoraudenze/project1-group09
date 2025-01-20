@@ -102,6 +102,37 @@ function hideTodayBtn() {
     todayBtn.style.display = "flex";
   }
 }
+daysContainer.addEventListener("click", (event) => {
+
+  if (event.target.classList.contains("day")) {
+    const clickedDay = event.target.textContent;
+
+
+    let day = parseInt(clickedDay);
+    let monthIndex = currentMonth;
+    let year = currentYear;
+
+    if (event.target.classList.contains("prev")) {
+  
+      monthIndex--;
+      if (monthIndex < 0) {
+        monthIndex = 11;
+        year--;
+      }
+    } else if (event.target.classList.contains("next")) {
+   
+      monthIndex++;
+      if (monthIndex > 11) {
+        monthIndex = 0;
+        year++;
+      }
+    }  
+    const formattedDate = `${String(monthIndex + 1).padStart(2, "0")}/${String(day).padStart(2, "0")}/${year}`;
+
+    console.log(formattedDate); // Logs the formatted date
+  }
+  
+});
 
 const taskInput = document.getElementById("task-input");
 const addTaskBtn = document.getElementById("add-task-btn");
