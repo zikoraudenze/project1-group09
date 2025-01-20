@@ -1,17 +1,20 @@
 :root {
-    /* --primary-color: #9AA6B2;
-    --text-color: #9AA6B2;
-    --bg-color: #F8FAFC; */
     --primary-color: #092635;
+    --accent-color: ;
     --text-color: #1B4242;
-    --bg-color: #9EC8B9;
+    --secondary-text: ;
+    --base-color: #9EC8B9;
+    --base-variant: #fff ;
   }
-  dark {
-    --primary-color: #1B4242;
-    --text-color: #9EC8B9;
-    --bg-color: #092635;
-    
+  .darkmode {
+    --primary-color: #062b3d;
+    --accent-color: ;
+    --text-color: #1B4242;
+    --secondary-text: ;
+    --base-color: #6ad1ad;
+    --base-variant: #fff ;
   }
+ 
   * {
     margin: 0;
     padding: 0;
@@ -212,6 +215,28 @@
   .custom-tooltip {
     --bs-tooltip-bg: var(--bd-violet-bg);
     --bs-tooltip-color: var(--bs-white);
+  }
+  #theme-switch{
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 15%;
+    background-color: var(--base-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #theme-switch svg{
+    fill: var(--base-color);
+  }
+  #theme-switch svg:last-child{
+    display: none;
+  }
+  .darkmode #theme-switch svg:first-child{
+    display: none;
+  }
+  .darkmode #theme-switch svg:last-child{
+    display:block;
   }
 <<<<<<< HEAD
   
