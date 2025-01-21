@@ -239,6 +239,8 @@
     display:block;
   }
   
+
+  
   /* Style for Delete Button */
 .btn-tomato {
   background-color: tomato;
@@ -256,6 +258,24 @@
 
 #backgroud-img{
 
+
   background-size: cover;
   background-image: url('/assets/images/buildings-1850129_1920.jpg');
 }
+
+  
+  }
+
+  #reactWeatherImage{
+
+    /* backgroud fits the size of the parent element */
+    max-height: 150px;
+    background-color: darkgray;
+    opacity: 40;
+    /* fills the content */
+    object-fit: cover;
+    /* center the image */
+    object-position: center;
+    
+
+
