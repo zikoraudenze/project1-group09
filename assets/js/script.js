@@ -151,14 +151,11 @@ daysContainer.addEventListener("click", (event) => {
         console.log(activity.name);
       });
       // checks the date value of the selected calendar day and compares it to the date value of the activityList array and only displays the activities that match the date value
+      clearActivityList();
         for (let i = 0; i < activityList.length; i++) {
             if (activityList[i].date === formattedDate) {
                 createActivityList(activityList[i].name, activityList[i].city, activityList[i].state);
-
-            }else {
-              console.log('a')
-              renderNoActivities()
-            }            
+              }        
         }
       }
 
@@ -189,7 +186,7 @@ function createActivityList(name, city, state) {
     const activityListEl = document.querySelector('#activity-list-selection');
     if (activityListEl) {
         activityListEl.innerHTML += `
-            <button class="list-group-item d-flex justify-content-between align-items-center activity-list-selected">Name:  ${name}    |             Location: ${city}, ${state}<button class="btn btn-tomato delete-task-btn">Delete</button></button>
+            <button class="list-group-item d-flex justify-content-between align-items-center activity-list-selected">Name:  ${name}    |             Location: ${city}, ${state}</button>
         `;
     }
 }
@@ -244,6 +241,7 @@ document.addEventListener('click', function(event) {
     if (event.target.classList.contains('activity-list-selected')) {
         const selectedActivity = getSelectedActivity();
         displaySelectedActivity(selectedActivity);
+        document.getElementById("activity-details-nav").focus();
         generateWeatherInfo();
     }
 });
