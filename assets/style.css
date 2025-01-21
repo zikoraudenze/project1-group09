@@ -1,18 +1,18 @@
 :root {
-    --primary-color: #092635;
-    --accent-color: ;
+    --primary-color:#2E5077 ;
     --text-color: #1B4242;
-    --secondary-text: ;
-    --base-color: #9EC8B9;
+    --text-variant: black ;
+    --base-color: #FBFBFB;
     --base-variant: #fff ;
+    --base-buttom: #118B50;
   }
   .darkmode {
-    --primary-color: #062b3d;
-    --accent-color: ;
-    --text-color: #1B4242;
-    --secondary-text: ;
-    --base-color: #6ad1ad;
+    --primary-color: #2973B2;
+    --text-color: #bdb9b0;
+    --text-variant: #fff ;
+    --base-color: #2E5077;
     --base-variant: #fff ;
+    --base-buttom: #4CC9FE;
   }
  
   * {
@@ -20,6 +20,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+
   }
   body {
     background-color: #fff;
@@ -33,7 +34,7 @@
     max-width: auto;
     padding: 30px 20px;
     border-radius: 10px;
-    background-color: var(--bg-color);
+    background-color: var(--base-color);
   }
   .calendar .header {
     display: flex;
@@ -68,7 +69,7 @@
     transition: all 0.3s;
   }
   .calendar .header .btns .btn:hover {
-    background-color: #229799;
+    background-color: #0d2a68;
     transform: scale(1.05);
   }
   .weekdays {
@@ -81,6 +82,7 @@
     text-align: center;
     font-size: 16px;
     font-weight: 600;
+    color: var(--text-variant);
   }
   .days {
     display: flex;
@@ -97,7 +99,7 @@
     font-size: 16px;
     font-weight: 400;
     color: var(--text-color);
-    background-color: #fff;
+    background-color: var(--base-color);
     transition: all 0.3s;
   }
   .days .day:not(.next):not(.prev):hover {
@@ -113,11 +115,25 @@
   .days .day.prev {
     color: #ccc;
   }
+  .card-container{
+    background-color: var(--base-color);
+    color: var(--text-color);
+    padding: 30px 20px;
+  }
+  .card-container .card-header{
+    background-color: var(--base-color);
+    border-bottom: 2px solid #ccc;
+  }
+  .card-header{
+    background-color: var(--base-color);
+    color: var(--text-color);
+  }
+
 
   .task-manager {
     margin-top: 20px;
     padding: 15px;
-    background-color: var(--bg-color);
+    background-color: var(--base-color);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
@@ -221,13 +237,13 @@
     width: 50px;
     padding: 0;
     border-radius: 15%;
-    background-color: var(--base-variant);
+    background-color: var(--base-buttom);
     display: flex;
     justify-content: center;
     align-items: center;
   }
   #theme-switch svg{
-    fill: var(--base-color);
+    fill: ;
   }
   #theme-switch svg:last-child{
     display: none;
@@ -264,8 +280,7 @@
 }
 
   
-  }
-
+  
   #reactWeatherImage{
 
     /* backgroud fits the size of the parent element */
@@ -275,7 +290,7 @@
     /* fills the content */
     object-fit: cover;
     /* center the image */
-    object-position: center;
+    object-position: center;}
     
 
 
