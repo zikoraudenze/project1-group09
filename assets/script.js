@@ -144,7 +144,7 @@ daysContainer.addEventListener("click", (event) => {
             if (activityList.date[i] === formattedDate) {
                 createActivityList(activityList.name[i], activityList.city, activityList.state);
             }else {
-              console.log('un rempalago')
+              console.log('a')
               renderNoActivities()
             }            
         }
@@ -246,7 +246,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const newTaskInput = document.getElementById("newTaskInput");
   const saveTaskBtn = document.getElementById("saveTaskBtn");
   const taskList = document.getElementById("task-list");
+  const urbanButton = document.querySelector("#urban-style-button");
+  const natureButton = document.querySelector("#nature-style-button");
+  const abstractButton = document.querySelector("#abstract-style-button");
+  const backgroundImageEl = document.querySelector("#backgroud-img");
 
+//listens for the click event on the urban button and then changes the background url for backgroundImageEl, sets the class of disabled for the Urban button and removes the class of disabled
+// from the other buttons
+urbanButton.addEventListener("click",() => {
+  backgroundImageEl.style.backgroundImage = "url(./assets/images/buildings-1850129_1920.jpg)";
+  urbanButton.classList.add("disabled");
+  natureButton.classList.remove("disabled");
+  abstractButton.classList.remove("disabled");
+});
+
+//listens for the click event on the nature button and then changes the background url for backgroundImageEl, sets the class of
+// disabled for the nature button and removes the class of disabled from the other buttons
+natureButton.addEventListener("click",() => {
+  backgroundImageEl.style.backgroundImage = "url(./assets/images/mountain-8117525.jpg)";
+  natureButton.classList.add("disabled");
+  urbanButton.classList.remove("disabled");
+  abstractButton.classList.remove("disabled");
+});
+
+//listens for the click event on the abstract button and then changes the background url for backgroundImageEl, sets the class of
+// disabled for the abstract button and removes the class of disabled from the other buttons
+abstractButton.addEventListener("click",() => {
+  backgroundImageEl.style.backgroundImage = "url(./assets/images/amber-7327252_1920.jpg)";
+  abstractButton.classList.add("disabled");
+  urbanButton.classList.remove("disabled");
+  natureButton.classList.remove("disabled");
+});
   // Add Task Functionality
   saveTaskBtn.addEventListener("click", () => {
     const taskText = newTaskInput.value.trim();
@@ -274,4 +304,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 

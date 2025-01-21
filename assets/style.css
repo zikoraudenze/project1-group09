@@ -30,7 +30,7 @@
     flex: auto;
     left: 1300px;
     width: 100%;
-    max-width: 600px;
+    max-width: auto;
     padding: 30px 20px;
     border-radius: 10px;
     background-color: var(--bg-color);
@@ -252,4 +252,10 @@
 
 .btn-tomato:hover {
   background-color: darkred;
+}
+
+#backgroud-img{
+
+  background-size: cover;
+  background-image: url('/assets/images/buildings-1850129_1920.jpg');
 }
