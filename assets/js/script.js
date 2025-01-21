@@ -261,14 +261,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const natureButton = document.querySelector("#nature-style-button");
   const abstractButton = document.querySelector("#abstract-style-button");
   const backgroundImageEl = document.querySelector("#backgroud-img");
+  
 
 //listens for the click event on the urban button and then changes the background url for backgroundImageEl, sets the class of disabled for the Urban button and removes the class of disabled
 // from the other buttons
+//stores the current value:urban in local storage
 urbanButton.addEventListener("click",() => {
   backgroundImageEl.style.backgroundImage = "url(./assets/images/buildings-1850129_1920.jpg)";
   urbanButton.classList.add("disabled");
   natureButton.classList.remove("disabled");
   abstractButton.classList.remove("disabled");
+  localStorage.setItem("prefBackground", "urban");
 });
 
 //listens for the click event on the nature button and then changes the background url for backgroundImageEl, sets the class of
@@ -278,6 +281,7 @@ natureButton.addEventListener("click",() => {
   natureButton.classList.add("disabled");
   urbanButton.classList.remove("disabled");
   abstractButton.classList.remove("disabled");
+  localStorage.setItem("prefBackground", "nature");
 });
 
 //listens for the click event on the abstract button and then changes the background url for backgroundImageEl, sets the class of
@@ -287,6 +291,7 @@ abstractButton.addEventListener("click",() => {
   abstractButton.classList.add("disabled");
   urbanButton.classList.remove("disabled");
   natureButton.classList.remove("disabled");
+  localStorage.setItem("prefBackground", "abstract");
 });
   // Add Task Functionality
   //saveTaskBtn.addEventListener("click", () => {
@@ -395,3 +400,24 @@ abstractButton.addEventListener("click",() => {
     return info;
     
     };
+
+    //calls last value stored in prefBackground value from local storage and sets the background image to the value of prefBackground as soon as the page loads
+
+    function setPrefBackground() {
+      const urbanButton = document.querySelector("#urban-style-button");
+  const natureButton = document.querySelector("#nature-style-button");
+  const abstractButton = document.querySelector("#abstract-style-button");
+  const backgroundImageEl = document.querySelector("#backgroud-img");
+      const prefBackground = localStorage.getItem("prefBackground");
+      if (prefBackground === "urban") {
+        backgroundImageEl.style.backgroundImage = "url(./assets/images/buildings-1850129_1920.jpg)";
+        urbanButton.classList.add("disabled");
+      } else if (prefBackground === "nature") {
+        backgroundImageEl.style.backgroundImage = "url(./assets/images/mountain-8117525.jpg)";
+        natureButton.classList.add("disabled");
+      } else if (prefBackground === "abstract") {
+        backgroundImageEl.style.backgroundImage = "url(./assets/images/amber-7327252_1920.jpg)";
+        abstractButton.classList.add("disabled");
+      }
+    }
+    setPrefBackground();
