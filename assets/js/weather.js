@@ -75,7 +75,8 @@ function changeWeatherImageBackground() {
   const changeWeatherImage = document.getElementById('reactWeatherImage');
   //if the condition is 'rain', set the background image to the rain image
   if (currentCondition === 'rain') {
-    changeWeatherImage.src = "./assets/images/rainGifOverlay.gif";
+    changeWeatherImage.src = "./assets/images/rainDropsOverlay.gif";
+    changeWeatherImage.style.backgroundColor = 'SkyBlue';
   } 
   //if the condition is 'sunny', set the background image to the sunny image
   else if (currentCondition === 'sunny') {
@@ -84,13 +85,14 @@ function changeWeatherImageBackground() {
   } 
   //if the condition is 'snow', set the background image to the snow image
   else if (currentCondition === 'snow') {
-    changeWeatherImage.src = "assets/images/snowflakeGifOverlay.gif";
+    changeWeatherImage.src = "./assets/images/snowflakeGifOverlay.gif";
     //change the background color to black
    changeWeatherImage.style.backgroundColor = 'black';
   } 
   //if the condition is 'cloudy', set the background image to the cloudy image
   else if (currentCondition === 'cloudy') {
-    changeWeatherImage.src = "assets/images/cloudOverlay.gif";
+    changeWeatherImage.src = "./assets/images/cloudOverlay.gif";
+    changeWeatherImage.style.backgroundColor = 'SkyBlue';
   }
 }
 

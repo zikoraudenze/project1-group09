@@ -48,4 +48,4 @@ Based on the user stories created and the elements our team ideated in the wiref
 - It is done when the information a user has entered for an Activity is stored in Local Storage
 - It is done when a user is able to navigate through and interact with the calendar element and view the corresponding Activities displayed in the Activity Summary section
 - It is done when the weather area displays animated graphics of the corresponding weather conditions for the Activities selected
-
+-

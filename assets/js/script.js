@@ -130,19 +130,31 @@ daysContainer.addEventListener("click", (event) => {
         year++;
       }
     }  
-    formattedDate = `${String(monthIndex + 1).padStart(2, "0")}/${String(day).padStart(2, "0")}/${year}`;
+    // formattedDate = `${String(monthIndex + 1).padStart(2, "0")}/${String(day).padStart(2, "0")}/${year}`;
+
+    //formates date to YYYY-MM-DD
+    formattedDate = `${year}-${String(monthIndex + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
     console.log(formattedDate)
+    
 
     function clearActivityList() {
       const activityListNode = document.querySelector("#activity-list-selection")
       activityListNode.innerHTML = ''
     }
     function renderActivityList() {
+// pulls the tasks from local storage and parses the data into an object with arrays of name, address, city, state, description, and date that will be used to display the activities
+      let headerActivityEL = document.querySelector("#actitvity-list-day-selected-header");
+
+      const activityList = readLocalStorage() || []; 
+      activityList.forEach(activity => {
+        console.log(activity.name);
+      });
       // checks the date value of the selected calendar day and compares it to the date value of the activityList array and only displays the activities that match the date value
-      clearActivityList()
-        for (let i = 0; i < activityList.name.length; i++) {
-            if (activityList.date[i] === formattedDate) {
-                createActivityList(activityList.name[i], activityList.city, activityList.state);
+        for (let i = 0; i < activityList.length; i++) {
+            if (activityList[i].date === formattedDate) {
+                createActivityList(activityList[i].name, activityList[i].city, activityList[i].state);
+
             }else {
               console.log('a')
               renderNoActivities()
@@ -156,15 +168,15 @@ daysContainer.addEventListener("click", (event) => {
 });
 
 let activityListSelected;
-const activityList = {
+// const activityList = {
 
-    name: ['Visit the Zoo','Visit the Museum','Visit the Park', 'Visit the Aquarium', 'Visit the Library'],
-    address: ['123 street', '456 street', '789 street', '101 street', '112 street'],
-    city: 'Kansas City',
-    state: 'MO',
-    description: ['Visit the Zoo', 'Visit the Museum', 'Visit the Park', 'Visit the Aquarium', 'Visit the Library'],
-    date: ['01/24/2025', '01/24/2025', '01/24/2025', '01/24/2025', '01/24/2025'],
-}
+//     name: ['Visit the Zoo','Visit the Museum','Visit the Park', 'Visit the Aquarium', 'Visit the Library'],
+//     address: ['123 street', '456 street', '789 street', '101 street', '112 street'],
+//     city: 'Kansas City',
+//     state: 'MO',
+//     description: ['Visit the Zoo', 'Visit the Museum', 'Visit the Park', 'Visit the Aquarium', 'Visit the Library'],
+//     date: ['2025-01-24', '2025/01-26', '2025-01-21', '2025-01-21', '2025-01-21'],
+// }
 
 function renderNoActivities(){
   const activityListEl = document.querySelector('#activity-list-selection');
@@ -177,7 +189,7 @@ function createActivityList(name, city, state) {
     const activityListEl = document.querySelector('#activity-list-selection');
     if (activityListEl) {
         activityListEl.innerHTML += `
-            <button class="list-group-item d-flex justify-content-between align-items-center activity-list-selected">${name} -------------------- ${city}, ${state}</button>
+            <button class="list-group-item d-flex justify-content-between align-items-center activity-list-selected">Name:  ${name}    |             Location: ${city}, ${state}<button class="btn btn-tomato delete-task-btn">Delete</button></button>
         `;
     }
 }
@@ -192,19 +204,18 @@ function createActivityList(name, city, state) {
 
 
 function getSelectedActivity(){
-
+  const activityList = readLocalStorage() || []; 
     activityListSelected = document.querySelectorAll('.activity-list-selected');
         const selectedActivityIndex = Array.from(activityListSelected).indexOf(document.activeElement);
         const currentSelectedActivity = {
-            name: activityList.name[selectedActivityIndex],
-            address: activityList.address[selectedActivityIndex],
-            city: activityList.city,
-            state: activityList.state,
-            description: activityList.description[selectedActivityIndex],
-            date: activityList.date[selectedActivityIndex],
+            name: activityList[selectedActivityIndex].name,
+            address: activityList[selectedActivityIndex].address,
+            city: activityList[selectedActivityIndex].city,
+            state: activityList[selectedActivityIndex].state,
+            description: activityList[selectedActivityIndex].description,
+            date: activityList[selectedActivityIndex].date,
         }
         console.log(selectedActivityIndex);
-        console.log(currentSelectedActivity);
             return currentSelectedActivity;
     }
 // //displays the selected activity in the DOM
@@ -250,14 +261,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const natureButton = document.querySelector("#nature-style-button");
   const abstractButton = document.querySelector("#abstract-style-button");
   const backgroundImageEl = document.querySelector("#backgroud-img");
+  
 
 //listens for the click event on the urban button and then changes the background url for backgroundImageEl, sets the class of disabled for the Urban button and removes the class of disabled
 // from the other buttons
+//stores the current value:urban in local storage
 urbanButton.addEventListener("click",() => {
   backgroundImageEl.style.backgroundImage = "url(./assets/images/buildings-1850129_1920.jpg)";
   urbanButton.classList.add("disabled");
   natureButton.classList.remove("disabled");
   abstractButton.classList.remove("disabled");
+  localStorage.setItem("prefBackground", "urban");
 });
 
 //listens for the click event on the nature button and then changes the background url for backgroundImageEl, sets the class of
@@ -267,6 +281,7 @@ natureButton.addEventListener("click",() => {
   natureButton.classList.add("disabled");
   urbanButton.classList.remove("disabled");
   abstractButton.classList.remove("disabled");
+  localStorage.setItem("prefBackground", "nature");
 });
 
 //listens for the click event on the abstract button and then changes the background url for backgroundImageEl, sets the class of
@@ -276,34 +291,35 @@ abstractButton.addEventListener("click",() => {
   abstractButton.classList.add("disabled");
   urbanButton.classList.remove("disabled");
   natureButton.classList.remove("disabled");
+  localStorage.setItem("prefBackground", "abstract");
 });
   // Add Task Functionality
-  saveTaskBtn.addEventListener("click", () => {
-    const taskText = newTaskInput.value.trim();
+  //saveTaskBtn.addEventListener("click", () => {
+  // const taskText = newTaskInput.value.trim();
 
-    // Validate input
-    if (taskText) {
-      // Create a new list item
-      const li = document.createElement("li");
-      li.classList.add("task-item");
-      li.innerHTML = `
-        ${taskText}
-        <button class="btn btn-tomato delete-task-btn">Delete</button>
-      `;
-      taskList.appendChild(li);
+//     // Validate input
+    // if (taskText) {
+    //   // Create a new list item
+    //   const li = document.createElement("li");
+    //   li.classList.add("task-item");
+    //   li.innerHTML = `
+    //     ${taskText}
+    //     <button class="btn btn-tomato delete-task-btn">Delete</button>
+    //   `;
+    //   taskList.appendChild(li);
 
-      // Attach delete functionality
-      li.querySelector(".delete-task-btn").addEventListener("click", () => {
-        taskList.removeChild(li);
-      });
+      // // Attach delete functionality
+      // li.querySelector(".delete-task-btn").addEventListener("click", () => {
+      //   taskList.removeChild(li);
+      // });
 
       // Clear input field and close the modal
-      newTaskInput.value = "";
-      const addTaskModal = bootstrap.Modal.getInstance(document.getElementById("addTaskModal"));
-      addTaskModal.hide();
-    }
+    //   newTaskInput.value = "";
+    //   const addTaskModal = bootstrap.Modal.getInstance(document.getElementById("addTaskModal"));
+    //   addTaskModal.hide();
+    // }
   });
-});
+
 
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -342,9 +358,6 @@ abstractButton.addEventListener("click",() => {
         
         const addTaskModal = bootstrap.Modal.getInstance(document.getElementById("addTaskModal"));
         addTaskModal.hide();
-
-        
-        displayTasks();
       } else {
         alert("Please fill out all fields.");
       }
@@ -381,4 +394,30 @@ abstractButton.addEventListener("click",() => {
     displayTasks();
   });
 
+  const readLocalStorage = function () {
+    const stringInfo = localStorage.getItem('tasks');
+    const info = JSON.parse(stringInfo);
+    return info;
+    
+    };
 
+    //calls last value stored in prefBackground value from local storage and sets the background image to the value of prefBackground as soon as the page loads
+
+    function setPrefBackground() {
+      const urbanButton = document.querySelector("#urban-style-button");
+  const natureButton = document.querySelector("#nature-style-button");
+  const abstractButton = document.querySelector("#abstract-style-button");
+  const backgroundImageEl = document.querySelector("#backgroud-img");
+      const prefBackground = localStorage.getItem("prefBackground");
+      if (prefBackground === "urban") {
+        backgroundImageEl.style.backgroundImage = "url(./assets/images/buildings-1850129_1920.jpg)";
+        urbanButton.classList.add("disabled");
+      } else if (prefBackground === "nature") {
+        backgroundImageEl.style.backgroundImage = "url(./assets/images/mountain-8117525.jpg)";
+        natureButton.classList.add("disabled");
+      } else if (prefBackground === "abstract") {
+        backgroundImageEl.style.backgroundImage = "url(./assets/images/amber-7327252_1920.jpg)";
+        abstractButton.classList.add("disabled");
+      }
+    }
+    setPrefBackground();
