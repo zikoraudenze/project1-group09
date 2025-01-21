@@ -238,7 +238,6 @@
   .darkmode #theme-switch svg:last-child{
     display:block;
   }
-<<<<<<< HEAD
   
   /* Style for Delete Button */
 .btn-tomato {
@@ -254,24 +253,3 @@
 .btn-tomato:hover {
   background-color: darkred;
 }
-=======
-
-  #weather-background{
-
-  
-  }
-
-  #reactWeatherImage{
-
-    /* backgroud fits the size of the parent element */
-    max-height: 150px;
-    background-color: darkgray;
-    opacity: 40;
-    /* fills the content */
-    object-fit: cover;
-    /* center the image */
-    object-position: center;
-    
-
-  }
->>>>>>> fb4b75e07e285999582594d9a740378392fe1064
