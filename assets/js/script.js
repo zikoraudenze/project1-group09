@@ -136,8 +136,8 @@ daysContainer.addEventListener("click", (event) => {
     formattedDate = `${year}-${String(monthIndex + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
     console.log(formattedDate)
-    
 
+    
     function clearActivityList() {
       const activityListNode = document.querySelector("#activity-list-selection")
       activityListNode.innerHTML = ''
@@ -201,20 +201,23 @@ function createActivityList(name, city, state) {
 
 
 function getSelectedActivity(){
-  const activityList = readLocalStorage() || []; 
-    activityListSelected = document.querySelectorAll('.activity-list-selected');
-        const selectedActivityIndex = Array.from(activityListSelected).indexOf(document.activeElement);
-        const currentSelectedActivity = {
-            name: activityList[selectedActivityIndex].name,
-            address: activityList[selectedActivityIndex].address,
-            city: activityList[selectedActivityIndex].city,
-            state: activityList[selectedActivityIndex].state,
-            description: activityList[selectedActivityIndex].description,
-            date: activityList[selectedActivityIndex].date,
-        }
-        console.log(selectedActivityIndex);
-            return currentSelectedActivity;
-    }
+  //gets the list of activities from on the dom and sets it as a variable
+  const currentTaskList = readLocalStorage() || [];
+  const activityList = currentTaskList.filter(activity => activity.date === formattedDate);
+
+
+  activityListSelected = document.querySelectorAll('.activity-list-selected');
+  const selectedActivityIndex = Array.from(activityListSelected).indexOf(document.activeElement);
+  //for each click event replace the selected activity with the new selected activity
+  if (selectedActivityIndex !== -1) {
+    const currentSelectedActivity = activityList[selectedActivityIndex];
+    console.log(selectedActivityIndex);
+    return currentSelectedActivity;
+  }
+  return null;
+}
+
+//reset the getSelectedActivity function to nul
 // //displays the selected activity in the DOM
 function displaySelectedActivity(currentSelectedActivity) {
     const selectedActivity = currentSelectedActivity;
@@ -236,7 +239,7 @@ function displaySelectedActivity(currentSelectedActivity) {
     console.log(selectedActivity);
 }
 
-// Add click event listener to update the selected activity
+// Add click event listener to update the selected activity for each click event. Display the selected activity in the DOM and call the generateWeatherInfo function. 
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('activity-list-selected')) {
         const selectedActivity = getSelectedActivity();
@@ -244,6 +247,7 @@ document.addEventListener('click', function(event) {
         document.getElementById("activity-details-nav").focus();
         generateWeatherInfo();
     }
+    
 });
 
 
@@ -419,3 +423,6 @@ abstractButton.addEventListener("click",() => {
       }
     }
     setPrefBackground();
+
+    //function that gets the certain data from the activityList array where the date matches FromattedDate
+    
